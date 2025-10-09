@@ -80,3 +80,22 @@ body {
 .chat-input button:hover {
     background-color: #218838;
 }
+
+.nav-bar {
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.nav-bar a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.nav-bar a:hover {
+    color: #0056b3;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Backend Test</title>
+</head>
+<body>
+    <h1>Say Hello to My Python Backend!</h1>
+
+    <form id="greetingForm">
+        <label for="nameInput">Enter your name:</label>
+        <input type="text" id="nameInput" required>
+        <button type="submit">Get Greeting</button>
+    </form>
+
+    <p>Backend Response:</p>
+    <div id="responseArea" style="border: 1px solid #ccc; padding: 10px; min-height: 20px;">
+        Waiting for input...
+    </div>
+
+    <script>
+        // *** IMPORTANT: REPLACE THIS URL with your live Render URL ***
+        // Your URL looks like: https://nate-backend.onrender.com
+        const RENDER_API_URL = "https://nate-backend.onrender.com"; 
+
+        document.getElementById('greetingForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Stop the form from doing a traditional page reload
+
+            const name = document.getElementById('nameInput').value;
+            const responseArea = document.getElementById('responseArea');
+            responseArea.textContent = 'Sending request to backend...';
+
+            try {
+                // Use the Fetch API to send a POST request to your Python backend
+                const response = await fetch(`${RENDER_API_URL}/greet`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    // Convert the JavaScript object to a JSON string for the body
+                    body: JSON.stringify({ name: name })
+                });
+
+                // Get the JSON response from the server
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Display the message returned from your Python backend
+                    responseArea.textContent = data.message;
+                } else {
+                    // Handle server-side errors
+                    responseArea.textContent = `Error from server: ${data.message || 'Unknown error'}`;
+                }
+
+            } catch (error) {
+                // Handle network errors (e.g., if the server is down)
+                responseArea.textContent = 'Network Error: Could not reach the Render service.';
+                console.error('Fetch error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
