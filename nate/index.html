@@ -21,6 +21,19 @@
         <div id="responseArea">
             Waiting for input...
         </div>
+
+        <section id="magic8ballSection">
+            <h2>Magic 8 Ball - Try Your Luck</h2>
+            <p>Enter your yes/no question and see what the ball reveals!</p>
+            <form id="magic8ballForm">
+                <label for="questionInput">Ask your question:</label>
+                <input type="text" id="questionInput" name="questionInput" placeholder="Will I have a good day?" required>
+                <button type="submit">Ask the Ball</button>
+            </form>
+            <div id="magic8ballResponse">
+                Waiting for your question...
+            </div>
+        </section>
     </main>
     <script src="script.js"></script>
 </body>

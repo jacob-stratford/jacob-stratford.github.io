@@ -64,3 +64,34 @@ button:hover {
     background-color: white;
     border-radius: 4px;
 }
+
+#magic8ballSection {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+}
+
+#magic8ballSection h2 {
+    color: #333;
+    text-align: center;
+}
+
+#magic8ballSection p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#magic8ballSection form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#magic8ballResponse {
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-height: 20px;
+    background-color: white;
+    border-radius: 4px;
+}
