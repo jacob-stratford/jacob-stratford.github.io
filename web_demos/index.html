@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Demos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+    <a href="../index.html" class="return-link">Return to Projects</a>
+    <header>
+        <h1>Nate - AI-Powered Zoologist Assistant</h1>
+        <p>Enter your name to get a personalized greeting from the backend.</p>
+    </header>
+    <main>
+        <form id="greetingForm">
+            <label for="nameInput">Enter your name:</label>
+            <input type="text" id="nameInput" name="nameInput" required>
+            <button type="submit">Get Greeting</button>
+        </form>
+        <div id="responseArea">
+            Waiting for input...
+        </div>
+
+        <section id="magic8ballSection">
+            <h2>Magic 8 Ball - Try Your Luck</h2>
+            <p>Enter your yes/no question and see what the ball reveals!</p>
+            <form id="magic8ballForm">
+                <label for="questionInput">Ask your question:</label>
+                <input type="text" id="questionInput" name="questionInput" placeholder="Will I have a good day?" required>
+                <button type="submit">Ask the Ball</button>
+            </form>
+            <div id="magic8ballResponse">
+                Waiting for your question...
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

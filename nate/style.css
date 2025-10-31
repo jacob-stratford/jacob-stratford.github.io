@@ -1,10 +1,12 @@
 body {
     font-family: Arial, sans-serif;
-    max-width: 800px;
-    margin: 0 auto;
+    background-color: #f0f2f5;
+    margin: 0;
     padding: 20px;
-    background-color: #f5f5f5;
-    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .return-link {
@@ -14,84 +16,172 @@ body {
     color: #007bff;
     text-decoration: none;
     font-size: 16px;
+    z-index: 1000;
 }
 
 .return-link:hover {
     text-decoration: underline;
 }
 
-header {
-    text-align: center;
-    margin-bottom: 2rem;
+.chat-wrapper {
+    width: 100%;
+    max-width: 600px; /* About 50% of typical screen width */
+    height: 80vh;
+    display: flex;
+    justify-content: center;
 }
 
-h1 {
-    color: #333;
-}
-
-form {
+.chat-container {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
+    overflow: hidden;
+    border: 1px solid #e1e5e9;
 }
 
-label {
-    font-weight: bold;
+.chat-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #e1e5e9;
 }
 
-input {
-    padding: 8px;
-    font-size: 16px;
+.chat-header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
 }
 
-button {
-    padding: 10px;
+.chat-header p {
+    margin: 5px 0 0 0;
+    opacity: 0.9;
+    font-size: 14px;
+}
+
+.chat-display {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: #fafbfc;
+}
+
+.message {
+    max-width: 75%;
+    padding: 12px 16px;
+    border-radius: 18px;
+    word-wrap: break-word;
+    line-height: 1.4;
+    font-size: 15px;
+    position: relative;
+}
+
+.user-message {
+    align-self: flex-end;
     background-color: #007bff;
     color: white;
-    border: none;
-    cursor: pointer;
+    border-bottom-right-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
 }
 
-button:hover {
-    background-color: #0056b3;
-}
-
-#responseArea {
-    border: 1px solid #ccc;
-    padding: 10px;
-    min-height: 20px;
-    background-color: white;
-    border-radius: 4px;
-}
-
-#magic8ballSection {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #ccc;
-}
-
-#magic8ballSection h2 {
+.bot-message {
+    align-self: flex-start;
+    background-color: #f1f3f4;
     color: #333;
-    text-align: center;
+    border-bottom-left-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#magic8ballSection p {
-    text-align: center;
-    margin-bottom: 20px;
+.status-message {
+    align-self: center;
+    background-color: #e3f2fd;
+    color: #1976d2;
+    font-style: italic;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    margin: 4px 0;
+    box-shadow: none;
 }
 
-#magic8ballSection form {
+.tool-message {
+    align-self: center;
+    background-color: #fff3e0;
+    color: #f57c00;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    margin: 4px 0;
+    box-shadow: none;
+    border: 1px solid #ffcc02;
+}
+
+.chat-input {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
+    padding: 20px;
+    border-top: 1px solid #e1e5e9;
+    background-color: #fff;
+    gap: 12px;
 }
 
-#magic8ballResponse {
-    border: 1px solid #ccc;
-    padding: 10px;
-    min-height: 20px;
-    background-color: white;
-    border-radius: 4px;
+.chat-input input {
+    flex-grow: 1;
+    padding: 12px 16px;
+    border: 2px solid #e1e5e9;
+    border-radius: 24px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.chat-input input:focus {
+    border-color: #007bff;
+}
+
+.chat-input button {
+    padding: 12px 24px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    min-width: 80px;
+}
+
+.chat-input button:hover {
+    background-color: #218838;
+}
+
+.chat-input button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .chat-wrapper {
+        max-width: 95%;
+        height: 85vh;
+    }
+
+    .chat-header {
+        padding: 15px;
+    }
+
+    .chat-display {
+        padding: 15px;
+    }
+
+    .chat-input {
+        padding: 15px;
+    }
 }

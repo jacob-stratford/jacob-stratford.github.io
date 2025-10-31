@@ -1,0 +1,97 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    position: relative;
+}
+
+.return-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.return-link:hover {
+    text-decoration: underline;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input {
+    padding: 8px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#responseArea {
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-height: 20px;
+    background-color: white;
+    border-radius: 4px;
+}
+
+#magic8ballSection {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+}
+
+#magic8ballSection h2 {
+    color: #333;
+    text-align: center;
+}
+
+#magic8ballSection p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#magic8ballSection form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#magic8ballResponse {
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-height: 20px;
+    background-color: white;
+    border-radius: 4px;
+}
