@@ -23,6 +23,54 @@ body {
     text-decoration: underline;
 }
 
+.access-code-section {
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.access-code-section input {
+    padding: 8px 12px;
+    border: 2px solid #e1e5e9;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.access-code-section input:focus {
+    border-color: #25d366;
+}
+
+.access-code-section button {
+    padding: 8px 16px;
+    background-color: #25d366;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.access-code-section button:hover {
+    background-color: #128c7e;
+}
+
+.access-code-section button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+#access-code-status {
+    font-size: 18px;
+}
+
 .chat-wrapper {
     width: 100%;
     max-width: 600px; /* About 50% of typical screen width */

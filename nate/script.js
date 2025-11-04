@@ -1,12 +1,17 @@
 // API URL for the backend
 
-const RENDER_API_URL = "https://nate-backend.onrender.com"; // deployed backend
-//const RENDER_API_URL = "http://localhost:5000"; // dev backend 
+//const RENDER_API_URL = "https://nate-backend.onrender.com"; // deployed backend
+const RENDER_API_URL = "http://localhost:5000"; // dev backend
+
+let accessCode = null; // Global variable to store the access code
 
 document.addEventListener('DOMContentLoaded', () => {
     const chatDisplay = document.getElementById('chat-display');
     const userInput = document.getElementById('user-input');
     const sendButton = document.getElementById('send-button');
+    const accessCodeInput = document.getElementById('access-code-input');
+    const accessCodeSubmit = document.getElementById('access-code-submit');
+    const accessCodeStatus = document.getElementById('access-code-status');
 
     let currentConversationId = null;
     let eventSource = null;
@@ -25,6 +30,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Scroll to the bottom to show the newest message
         chatDisplay.scrollTop = chatDisplay.scrollHeight;
+    }
+
+    // Function to check access code
+    async function checkAccessCode() {
+        const code = accessCodeInput.value.trim();
+
+        if (code === '') {
+            return; // Don't send empty codes
+        }
+
+        // Disable input while processing
+        accessCodeInput.disabled = true;
+        accessCodeSubmit.disabled = true;
+        accessCodeSubmit.textContent = 'Checking...';
+
+        try {
+            const response = await fetch(`${RENDER_API_URL}/api/chat/check_access_code`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    access_code: code
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log('Access code response:', data);
+
+            // Display emoji based on accepted status
+            if (data.accepted === 'True') {
+                accessCodeStatus.textContent = '✅';
+            } else {
+                accessCodeStatus.textContent = '❌';
+            }
+
+            // Save the access code regardless of acceptance
+            accessCode = code;
+
+        } catch (error) {
+            console.error('Error checking access code:', error);
+            accessCodeStatus.textContent = '❌';
+        } finally {
+            // Re-enable input
+            accessCodeInput.disabled = false;
+            accessCodeSubmit.disabled = false;
+            accessCodeSubmit.textContent = 'Submit';
+        }
     }
 
     // Function to handle sending a message
@@ -60,7 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: JSON.stringify({
                     message_text: messageText,
-                    conversation_id: currentConversationId
+                    conversation_id: currentConversationId,
+                    access_code: accessCode
                 })
             });
 
@@ -154,6 +212,9 @@ document.addEventListener('DOMContentLoaded', () => {
             sendMessage();
         }
     });
+
+    // Event listener for the access code submit button
+    accessCodeSubmit.addEventListener('click', checkAccessCode);
 
     // Initial bot greeting
     addMessage('Hello! I\'m Nate, your AI-powered zoologist assistant. How can I help you learn about animals today?', 'bot');
