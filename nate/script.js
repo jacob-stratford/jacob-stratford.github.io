@@ -1,7 +1,7 @@
 // API URL for the backend
 
-//const RENDER_API_URL = "https://nate-backend.onrender.com"; // deployed backend
-const RENDER_API_URL = "http://localhost:5000"; // dev backend
+const RENDER_API_URL = "https://nate-backend.onrender.com"; // deployed backend
+//const RENDER_API_URL = "http://localhost:5000"; // dev backend
 
 let accessCode = null; // Global variable to store the access code
 
